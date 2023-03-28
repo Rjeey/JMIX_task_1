@@ -18,7 +18,7 @@ function connect() {
 function onConnected() {
     stompClient.subscribe('/topic/public', onMessageReceived);
 
-    stompClient.send("/app/list.addUser",
+    stompClient.send("/app/list.displayUser",
         {},
         JSON.stringify({sender: username, type: 'JOIN'})
     );

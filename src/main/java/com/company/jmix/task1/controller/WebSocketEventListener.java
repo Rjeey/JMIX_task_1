@@ -1,6 +1,6 @@
 package com.company.jmix.task1.controller;
 
-import com.company.jmix.task1.entity.ChatMessage;
+import com.company.jmix.task1.entity.StatusMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,11 +32,11 @@ public class WebSocketEventListener {
         if(username != null) {
             logger.info("User Disconnected : " + username);
 
-            ChatMessage chatMessage = new ChatMessage();
-            chatMessage.setType(ChatMessage.MessageType.LEAVE);
-            chatMessage.setSender(username);
+            StatusMessage statusMessage = new StatusMessage();
+            statusMessage.setType(StatusMessage.StatusType.LEAVE);
+            statusMessage.setSender(username);
 
-            messagingTemplate.convertAndSend("/topic/public", chatMessage);
+            messagingTemplate.convertAndSend("/topic/public", statusMessage);
         }
     }
 }

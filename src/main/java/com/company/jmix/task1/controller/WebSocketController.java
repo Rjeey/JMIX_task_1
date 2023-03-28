@@ -1,8 +1,6 @@
 package com.company.jmix.task1.controller;
 
-import com.company.jmix.task1.entity.ChatMessage;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.company.jmix.task1.entity.StatusMessage;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -14,13 +12,13 @@ public class WebSocketController {
 
 
 
-    @MessageMapping("/list.addUser")
+    @MessageMapping("/list.displayUser")
     @SendTo("/topic/public")
-    public ChatMessage addUser(@Payload ChatMessage chatMessage, SimpMessageHeaderAccessor headerAccessor) {
+    public StatusMessage displayUser(@Payload StatusMessage statusMessage, SimpMessageHeaderAccessor headerAccessor) {
         // Add username in web socket session
         headerAccessor.getSessionAttributes().put("username", headerAccessor.getUser().getName());
-        chatMessage.setSender(headerAccessor.getUser().getName());
+        statusMessage.setSender(headerAccessor.getUser().getName());
 
-        return chatMessage;
+        return statusMessage;
     }
 }
