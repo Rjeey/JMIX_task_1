@@ -75,7 +75,6 @@ public class LoginScreen extends Screen {
     }
 
     private void onLocalesFieldValueChangeEvent(HasValue.ValueChangeEvent<Locale> event) {
-        //noinspection ConstantConditions
         app.setLocale(event.getValue());
         UiControllerUtils.getScreenContext(this).getScreens()
                 .create(this.getClass(), OpenMode.ROOT)

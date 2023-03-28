@@ -25,7 +25,7 @@ function onConnected() {
 }
 
 function onError(error) {
-    alert("Could not connect to WebSocket server. Please refresh this page to try again!")
+    connector.onErrorConnect()
 }
 
 
@@ -33,4 +33,5 @@ function onMessageReceived(payload) {
     let message = JSON.parse(payload.body);
     let date = new Date();
     connector.addMessage("username: " + message.sender + " status: " + message.type + " date: " + date)
+
 }

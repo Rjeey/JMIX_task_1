@@ -13,13 +13,11 @@ import org.springframework.stereotype.Controller;
 public class WebSocketController {
 
 
-    private static final Logger logger = LoggerFactory.getLogger(WebSocketController.class);
 
     @MessageMapping("/list.addUser")
     @SendTo("/topic/public")
     public ChatMessage addUser(@Payload ChatMessage chatMessage, SimpMessageHeaderAccessor headerAccessor) {
         // Add username in web socket session
-        logger.info("controller username: "+ headerAccessor.getUser().getName());
         headerAccessor.getSessionAttributes().put("username", headerAccessor.getUser().getName());
         chatMessage.setSender(headerAccessor.getUser().getName());
 
